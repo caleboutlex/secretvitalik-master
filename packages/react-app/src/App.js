@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Body, Button, Header, Image, Link } from "./components";
 import logo from "./ethereumLogo.png";
 import useWeb3Modal from "./hooks/useWeb3Modal";
+import { useWeb3React } from "@web3-react/core";
 
 import { addresses, abis } from "@project/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
@@ -40,6 +41,7 @@ function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 function App() {
   const { loading, error, data } = useQuery(GET_TRANSFERS);
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
+  const { account, active } = useWeb3React();
 
   React.useEffect(() => {
     if (!loading && !error && data && data.transfers) {
@@ -50,6 +52,7 @@ function App() {
   return (
     <div>
       <Header>
+        <div>{account}</div>
         <WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} />
       </Header>
       <Body>
@@ -57,10 +60,6 @@ function App() {
         <p>
           Edit <code>packages/react-app/src/App.js</code> and save to reload.
         </p>
-        {/* Remove the "hidden" prop and open the JavaScript console in the browser to see what this function does */}
-        <Button hidden onClick={() => readOnChainData()}>
-          Read On-Chain Balance
-        </Button>
         <Link href="https://ethereum.org/developers/#getting-started" style={{ marginTop: "8px" }}>
           Learn Ethereum
         </Link>
