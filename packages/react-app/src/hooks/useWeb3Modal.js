@@ -16,7 +16,7 @@ const NETWORK_NAME = "mainnet";
 
 function useWeb3Modal(config = {}) {
   const [provider, setProvider] = useState();
-  const { autoLoad = true, infuraId = INFURA_ID, NETWORK = NETWORK_NAME } = config;
+  const { autoLoad = false, infuraId = INFURA_ID, NETWORK = NETWORK_NAME } = config;
   const { activate } = useWeb3React();
 
   // Web3Modal also supports many other wallets.
