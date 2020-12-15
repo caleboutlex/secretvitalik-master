@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 import { Body, Wrapper, Button, Header, Navbar, ImageWrap, Image, Connected, ButtonWrapper, LinkButton } from "./components";
 import logo from "./assets/logo.svg";
+
 import useWeb3Modal from "./hooks/useWeb3Modal";
 import { useWeb3React } from "@web3-react/core";
 
@@ -14,6 +15,8 @@ import { addresses, abis } from "@project/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
 
 import Dapp from './containers/dApp/dapp.component';
+
+
 import Landing from './components/Landing/landing.component';
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
@@ -62,7 +65,7 @@ const App = () => {
                       <Link to="/">Home</Link>
                     </li>
                     <li>
-                      <Link to="/containers/dApp">dApp</Link>
+                      <Link to="/containers/dApp">Sekret Vitalik</Link>
                     </li>
                   </ul>
                 </nav>
@@ -70,16 +73,38 @@ const App = () => {
                   Connected to {account.substring(0, 6)}...{account.substring(account.length - 4)}
                 </Connected>
               </Navbar>
-              : <Image src={logo} alt="Secret Vitalik" />}
+              :
+              <Navbar>
+                <ImageWrap>
+                  <Image src={logo} alt="Secret Vitalik" />
+                </ImageWrap>
+                <WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} />
+              </Navbar>
+          }
         </Header>
-        <Body>
-          <Wrapper>
-            <Switch>
-              <Route path="/containers/dApp">
-                <Dapp />
-              </Route>
-              <Route path="/">
+
+        <Switch>
+
+          <Route path="/containers/dApp">
+            <Body>
+              <Wrapper>
+                {account === null
+                  ? '-'
+                  : account
+                    ?
+                    <Dapp />
+                    :
+                    ''
+                }
+              </Wrapper>
+            </Body>
+          </Route>
+
+          <Route path="/">
+            <Body>
+              <Wrapper>
                 <Landing />
+
                 <ButtonWrapper>
                   <WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} logoutOfWeb3Modal={logoutOfWeb3Modal} />
                   {account === null
@@ -93,11 +118,14 @@ const App = () => {
                       ''
                   }
                 </ButtonWrapper>
-              </Route>
-            </Switch>
+              </Wrapper>
+            </Body>
+          </Route>
 
-          </Wrapper>
-        </Body>
+
+        </Switch>
+
+
       </div>
     </Router >
   );
