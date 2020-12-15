@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ethers } from "ethers";
 import { Web3ReactProvider } from '@web3-react/core';
-import "./index.css";
+
 import App from "./App";
 
 function getLibrary(provider) {
