@@ -13,17 +13,21 @@ const Leaderboard = () => {
     }
 
     let EventArray = new Array();
+    let EventSlice = new Array();
 
-    for (let i = 0; i < events.length; i++) {
-        EventArray.push(events[i].returnValues._amount);
+    if(events != undefined) {
+        for (let i = 0; i < events.length; i++) {
+            EventArray.push(events[i].returnValues._amount);
+        }
+    
+        EventArray.sort(compareNumbers);
+        EventSlice = EventArray.slice(0, 10);
     }
-
-    EventArray.sort(compareNumbers);
-    const eventSlice = EventArray.slice(0, 10);
+    
 
     return (
         <List>
-            {eventSlice.map(leader => (
+            {EventSlice.map(leader => (
                 <li>{library.utils.fromWei(leader, 'ether')} ETH</li>
             ))}
         </List>

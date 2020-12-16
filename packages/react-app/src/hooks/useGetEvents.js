@@ -8,9 +8,19 @@ const useGetEvents =  () => {
     
 
     useEffect(() => {
-      if (!!account && !!library && chainId === 3) {
+      if (!!account && !!library) {
           let stale = false
-          let Contract = new library.eth.Contract(abis.secretsanta, addresses.ropstenSanta);
+          let Contract;
+
+          if (chainId === 3 ) {
+            Contract = new library.eth.Contract(abis.secretsanta, addresses.ropstenSanta);
+            
+          } else if (chainId === 42 ) {
+            Contract = new library.eth.Contract(abis.secretsanta, addresses.kovanSanta);
+
+          } else if (chainId === 4 ) {
+            Contract = new library.eth.Contract(abis.secretsanta, addresses.rinkebySanta);
+          }
 
           Contract.getPastEvents('NewSanta', { fromBlock: 10000, toBlock: 'latest'}).then((events) =>{
               if (!stale) {

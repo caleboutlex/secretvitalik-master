@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
 import Web3 from "web3";
 import { Web3ReactProvider } from '@web3-react/core';
 
@@ -15,17 +13,10 @@ function getLibrary(provider) {
   return library
 }
 
-// This is the official Sablier subgraph. You can replace it with your own, if you need to.
-// See all subgraphs: https://thegraph.com/explorer/
-const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/sablierhq/sablier",
-});
 
 ReactDOM.render(
   <Web3ReactProvider getLibrary={getLibrary}>
-    <ApolloProvider client={client}>
       <App />
-    </ApolloProvider>
   </Web3ReactProvider>,
   document.getElementById("root"),
 );

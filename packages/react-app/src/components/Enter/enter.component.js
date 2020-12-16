@@ -1,19 +1,25 @@
 import { useWeb3React } from '@web3-react/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { abis, addresses } from "@project/contracts"
-import { StyledDiv, Flexwrapper, StyledForm, StyledInput, FormButton, InfoMessage } from "./enter.styles"
+import { StyledDiv, Flexwrapper, StyledForm, StyledInput, StyledWrapper, FormButton, MaxButton, InfoMessage } from "./enter.styles"
+import useBalance from '../../hooks/useBalance';
 
 const Enter = () => {
   const { account, library } = useWeb3React();
   const [value, setValue] = useState(0.01);
   const [message, setMessage] = useState();
   const [loading, setLoading] = useState(false);
+  const balance = useBalance();
 
   const handleChange = (e) => {
     let value = e.target.value;
     setValue(value);
   }
+
+  const handleSelectMax = useCallback(() => {
+    setValue(balance)
+  }, [])
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -45,14 +51,16 @@ const Enter = () => {
   return (
     <StyledDiv>
       <Flexwrapper>
-        <StyledInput
-          type="number"
-          inputmode="decimal"
-          pattern="^[0-9]*[.,]?[0-9]*$"
-          onChange={handleChange}
-          placeholder="Min. 0.01 ETH"
-          min="0.01"
-        />
+        <StyledWrapper>
+          <StyledInput
+            type="number"
+            inputmode="decimal"
+            pattern="^[0-9]*[.,]?[0-9]*$"
+            onChange={handleChange}
+            placeholder="Min. 0.01 ETH"
+            min="0.01"
+          />
+        </StyledWrapper>
         <StyledForm>
           <FormButton onClick={onSubmit}>Wrap your Gift!</FormButton>
           <InfoMessage><div>{message}</div></InfoMessage>
