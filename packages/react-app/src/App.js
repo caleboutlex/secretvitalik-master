@@ -68,7 +68,7 @@ const App = () => {
                       <Link to="/containers/dApp">Sekret Vitalik</Link>
                     </li>
                     <li>
-                      <a href="https://kovan.etherscan.io/address/0x56b5411353582A076F6FeE02CCd6Ee3aE544aefB#code">Etherscan</a>
+                      <a href="https://etherscan.io/address/0x1f52274ddf8fd6ce92633ab33f708e5b0b39b134#code">Etherscan</a>
                     </li>
                   </ul>
                 </nav>
