@@ -1,8 +1,0 @@
-{
-    "build": {
-      "image": "node:alpine",
-      "command": "yarn install && yarn build",
-      "publicDir": "build",
-      "baseDir": "./packages/react-app",
-    }
-   }
