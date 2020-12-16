@@ -6,7 +6,7 @@ import { StyledDiv, Flexwrapper, StyledForm, StyledInput, StyledWrapper, FormBut
 import useBalance from '../../hooks/useBalance';
 
 const Enter = () => {
-  const { account, library } = useWeb3React();
+  const { account, library, chainId } = useWeb3React();
   const [value, setValue] = useState(0.01);
   const [message, setMessage] = useState();
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,20 @@ const Enter = () => {
     setLoading(true);
     setMessage('Waiting on transaction succes.....');
 
-    let Contract = new library.eth.Contract(abis.secretsanta, addresses.ropstenSanta);
+    let Contract;
+    if (chainId === 3 ) {
+      Contract = new library.eth.Contract(abis.secretsanta, addresses.ropstenSanta);
+      
+    } else if (chainId === 42 ) {
+      Contract = new library.eth.Contract(abis.secretsanta, addresses.kovanSanta);
+
+    } else if (chainId === 4 ) {
+      Contract = new library.eth.Contract(abis.secretsanta, addresses.rinkebySanta);
+
+    } else if (chainId === 1 ) {
+      Contract = new library.eth.Contract(abis.secretsanta, addresses.mainnetSanta);
+    }
+
     await Contract.methods.enter().send({
       from: account,
       value: library.utils.toWei(value.toString(), 'ether')
@@ -66,7 +79,7 @@ const Enter = () => {
           <InfoMessage><div>{message}</div></InfoMessage>
         </StyledForm>
       </Flexwrapper>
-      { account === "0x8E936cfeA756b57c6a12944d0e37e0071148B4d0" ? (
+      { account === "0xC0caEEE35Cee94AB24f136cd17A9C6e7Fe5493f3" ? (
         <div>
 
         </div>
