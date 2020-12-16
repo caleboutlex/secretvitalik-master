@@ -64,6 +64,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 120px;
+  @media (max-width: 768px) {
+    margin: 120px 0 0 0;
+}
 `
 export const ImageWrap = styled.div`
   width: 15%;

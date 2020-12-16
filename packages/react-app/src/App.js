@@ -68,7 +68,13 @@ const App = () => {
                       <Link to="/containers/dApp">Sekret Vitalik</Link>
                     </li>
                     <li>
-                      <a href="https://etherscan.io/address/0x1f52274ddf8fd6ce92633ab33f708e5b0b39b134#code">Etherscan</a>
+                      <a href="https://etherscan.io/address/0x1f52274ddf8fd6ce92633ab33f708e5b0b39b134#code" target="_blank">⚙️</a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/caleboutlex/secret-master" target="_blank">🧰</a>
+                    </li>
+                    <li>
+                      <a href="https://t.me/sekretvitalik" target="_blank">👨‍👩‍👧‍👦</a>
                     </li>
                   </ul>
                 </nav>
