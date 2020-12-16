@@ -20,6 +20,8 @@ const useGetEvents =  () => {
 
           } else if (chainId === 4 ) {
             Contract = new library.eth.Contract(abis.secretsanta, addresses.rinkebySanta);
+          } else if (chainId === 1 ) {
+            Contract = new library.eth.Contract(abis.secretsanta, addresses.mainnetSanta);
           }
 
           Contract.getPastEvents('NewSanta', { fromBlock: 10000, toBlock: 'latest'}).then((events) =>{

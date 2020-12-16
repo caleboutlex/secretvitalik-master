@@ -5,7 +5,7 @@ const addresses = {
   ropstenSanta: "0x56b5411353582A076F6FeE02CCd6Ee3aE544aefB",
   kovanSanta: "0x56b5411353582A076F6FeE02CCd6Ee3aE544aefB",
   rinkebySanta: "0x894bE253a80aeF35Ad021f8340Ba644BF864d4f8",
-  mainnetSanta: "0x894bE253a80aeF35Ad021f8340Ba644BF864d4f8"
+  mainnetSanta: "0x1F52274DDF8fD6CE92633ab33F708e5b0b39B134"
 };
 
 export default addresses;

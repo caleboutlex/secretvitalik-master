@@ -19,6 +19,8 @@ const useEndTime =  () => {
 
           } else if (chainId === 4 ) {
             Contract = new library.eth.Contract(abis.secretsanta, addresses.rinkebySanta);
+          } else if (chainId === 1 ) {
+            Contract = new library.eth.Contract(abis.secretsanta, addresses.mainnetSanta);
           }
           
 
